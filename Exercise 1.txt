@@ -1,0 +1,201 @@
+1. Create the table SEMP with the following structure:-
+	EMPNO CHAR(4)
+	EMPNAME CHAR(20)
+	BASIC FLOAT(9,2)
+	DEPTNO CHAR(2)
+	DEPTHEAD CHAR(4)
+	=>  CREATE TABLE SEMP(
+		EMPNO CHAR(4)
+		EMPNAME CHAR(20)
+		BASIC FLOAT(9,2)
+		DEPTNO CHAR(2)
+		DEPTHEAD CHAR(4));
+
+2. Create the table SDEPT with the following structure:-
+	DEPTNO CHAR(2)
+	DEPTNAME CHAR(15)
+	=> CREATE TABLE SDEPT
+			( DEPTNO char(2),
+			  DEPTNAME CHAR(15)
+			);
+	
+
+3. Insert into the SDEPT table the following values:-
+	10, Development
+	20, Training
+=> insert INTO SDEPT VALUES (10, Development),(20,Training));
+
+4. Insert into the SEMP table the following values:-
+	0001, SUNIL, 6000, 10
+	0002, HIREN, 8000, 20
+	0003, ALI, 4000, 10, 0001
+	0004, GEORGE, 6000, 0002
+
+Create S, P, J, SPJ tables as specified below and insert a few rows in each table:-
+
+SUPPLIER
+(S#, Sname, Status, City)		-	S
+
+PARTS
+(P#, Pname, Color, Weight, City) 	-  	P
+
+PROJECTS
+(J#, Jname, City)			-	J
+
+SUPPLIER-PARTS-PROJECT
+(S#, P#, J#, Qty)			-	SPJ
+
+Sample data for S# column:- ‘S1’, ‘S2’, ‘S3’, etc.
+Sample data for P# column:- ‘P1’, ‘P2’, ‘P3’, etc.
+Sample data for J# column:- ‘J1’, ‘J2’, ‘J3’, etc.
+Sample data for Status column:- 10, 20, 30, etc.
+
+-->	CREATE TABLE S(
+	`S#` char(2),
+	Sname VARCHAR(20),
+	Status VARCHAR(20),
+	City VARCHAR(20)
+	);
+-->	CREATE TABLE P(
+	`P#` CHAR(2),
+	Pname VARCHAR(20),
+	Color VARCHAR(10),
+	Weight FLOAT(5,2),
+	City VARCHAR(20)
+ 	);
+-->	CREATE TABLE J(
+	`J#` CHAR(2),
+	Jname VARCHAR(20),
+	City VARCHAR(20)
+	);
+
+
+
+-->	CREATE TABLE SPJ(
+	`S#` CHAR(2),
+	`P#` CHAR(2),
+	`J#` CHAR(2),
+	Qty INT(4)
+	);
+
+
+
+Write the SELECT queries to do the following:-
+
+DESCRIBE TABLE S;
+DESCRIBE TABLE P;
+DESCRIBE TABLE J;
+DESCRIBE TABLE SPJ;
+
+ALTER TABLE S
+MODIFY COLUMN Status INT;
+
+INSERT INTO S(`S#`,Status)VALUES('S1',10); 
+
+INSERT INTO S(`S#`,Status)VALUES('S2',20); 
+
+INSERT INTO S(`S#`,Status)VALUES('S3',30); 
+
+
+INSERT INTO P(`P#`)VALUES('P1'); 
+INSERT INTO P(`P#`)VALUES('P2');
+INSERT INTO P(`P#`)VALUES('P3');
+
+INSERT INTO J(`J#`)VALUES('J1'); 
+INSERT INTO J(`J#`)VALUES('J2');
+INSERT INTO J(`J#`)VALUES('J3');
+
+
+INSERT INTO SPJ(`S#`, `P#`,`J#`)VALUES('S1','P1','J1');
+INSERT INTO SPJ(`S#`, `P#`,`J#`)VALUES('S2','P2','J2');
+INSERT INTO SPJ(`S#`, `P#`,`J#`)VALUES('S3','P3','J3');
+
+insert into s values
+
+('S1','Michael','20','London'),
+
+('S2','Franklin','19','Paris'),
+
+('S3','Traver','25','Athens'),
+
+('S4','Laster','80','London');
+
+
+insert into p values
+
+('p1','Hood','Black',11.54,'London'),
+
+('p2','Bonnet','White',19.87,'Paris'),
+
+('p3','Wheels','orrange',12.56,'Athens'),
+
+('p4','Gearbox','black',13.99,'London');
+
+
+insert into j values
+
+('J1','London6','London'),
+
+('j2','Paris85','Paris'),
+
+('j3','Athen89','Athen'),
+
+('j4','London795','London');
+
+
+insert into spj values
+
+('S1','P1','J1','2'),
+
+('S2','P2','J2','4'),
+
+('S3','P3','J3','6'),
+
+('S4','P4','J4','8');
+
+SELECT * FROM S;
+SELECT * FROM P;
+SELECT * FROM J;
+SELECT * FROM SPJ;
+
+
+
+5. Display all the data from the S table.
+--> Select * from S;
+
+6. Display only the S# and SNAME fields from the S table.
+-->select `S#`,SNAME from S;
+
+7. Display the PNAME and COLOR from the P table for the CITY=”London”.
+-->select pname,color from p where city = 'London';
+
+8. Display all the Suppliers from London.
+-->select sname from s where city='London';
+
+9. Display all the Suppliers from Paris or Athens.
+-->select sname from s where city='Paris' or 'Athens';
+
+
+10. Display all the Projects in Athens.
+-->select * from j where city='anthes';
+
+
+11. Display all the Partnames with the weight between 12 and 14 
+(inclusive of both).
+-->select pname from p where weight between 12 and 14;
+
+12. Display all the Suppliers with a Status greater than or equal to 20.
+-->select * from s where status >='20';
+
+
+13. Display all the Suppliers except the Suppliers from London.
+--> select Sname from s where city != 'London';
+
+
+14. Display only the Cities from where the Suppliers come from.
+--> select distinct city from s;
+
+
+15. Assuming that the Part Weight is in GRAMS, 
+display the same in MILLIGRAMS and KILOGRAMS.
+-->select weight, weight*1000 as Milligrams,weight/1000 as kilograms  from p; 
