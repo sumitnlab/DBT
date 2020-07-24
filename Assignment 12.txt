@@ -1,0 +1,38 @@
+Assignment – 12
+
+#############################################################################################################
+
+1) Write a query that selects all customers whose ratings are equal to or greater than
+ANY of Serres’.
+
+Ans=>SELECT * FROM customers
+WHERE rating >=ANY ( SELECT rating FROM customers
+     WHERE snum IN( SELECT snum FROM salespeople WHERE sname='serres' ) );
+
+###########################################################################################
+
+2) Write a query using ANY or ALL that will find all salespeople who have no
+customers located in their city.
+
+Ans=>SELECT snum FROM salespeople
+     WHERE (snum,city) NOT IN (SELECT snum,city FROM customers);
+
+###########################################################################################	 
+
+
+3) Write a query that selects all orders for amounts greater than any for the
+customers in London.
+
+Ans=>select * from orders where amt> ANY( select amt FROM orders
+     where cnum IN ( select cnum  FROM customers
+     where city='london' ) );
+
+###########################################################################################
+
+4) Write the above query using MIN or MAX.
+
+Ans=>SELECT * FROM orders
+		where amt>(SELECT min(amt)from customers NATURAL JOIN orders
+        where city='london');
+
+###########################################################################################
