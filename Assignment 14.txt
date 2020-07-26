@@ -1,0 +1,31 @@
+
+Assignment No 14
+
+
+*****************************************************************************************************
+1) Write a command that puts the following values, in their given order, into the
+salespeople table: city – San Jose, name – Blanco, comm – NULL, snum – 1100.
+
+Ans=> INSERT INTO salespeople (city,sname,comm,snum)
+		VALUES('San Jose','Blanco',NULL,1100);
+
+*****************************************************************************************************
+		
+2) Write a command that removes all orders from customer Clemens from the
+Orders table.
+
+Ans=> DELETE FROM orders
+		where cnum in
+		(SELECT cnum FROM customers
+		where cname='Clemens');
+
+*****************************************************************************************************
+
+
+4) Salesperson Serres has left the company. Assign her customers to Motika.
+
+Ans=> UPDATE customers SET snum=(SELECT snum FROM salespeople
+		where sname='serres')
+		where snum =(select snum FROM salespeople where sname='Motika');
+
+*****************************************************************************************************
